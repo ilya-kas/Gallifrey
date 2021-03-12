@@ -10,13 +10,15 @@ public class Connector extends Thread {
     private Socket socket;         //сокет соединения
     private DataInputStream in;    //потоки входных и выходных данных
     private DataOutputStream out;
-    private EditText et_ip;
+    private final EditText et_ip;
+    private final EditText et_port;
 
     private String ip;
-    private final int port = 5432;
+    private int port;
 
     public Connector(Activity finder) {
         et_ip = finder.findViewById(R.id.et_ip);
+        et_port = finder.findViewById(R.id.et_port);
         reconnect();
     }
 
@@ -26,6 +28,7 @@ public class Connector extends Thread {
                 if (et_ip.getText().toString().equals(""))
                     return;
                 ip = et_ip.getText().toString();
+                port = Integer.parseInt(et_port.getText().toString());
                 socket = new Socket(ip,port);
 
                 InputStream socketIn = socket.getInputStream();
@@ -47,7 +50,7 @@ public class Connector extends Thread {
     @Override
     public void run(){
         try {
-            while (true) {
+            while (!Thread.interrupted()) {
                 System.out.println("Ждём новое сообшение"); //todo logs
                 byte[] message = new byte[10]; //todo столько байт, сколько в протоколе. для безопастности от взлома
                 for (int i=0;i<message.length;i++)
