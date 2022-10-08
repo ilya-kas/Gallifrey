@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Remote controller</string>
+    <string name="connect">Connect</string>
+    <string name="d">D</string>
+    <string name="a">A</string>
+    <string name="menu1">pinmode</string>
+    <string name="menu2">set pin</string>
+    <string name="menu3">read from pin</string>
+    <string name="input">INPUT</string>
+    <string name="output">OUTPUT</string>
+    <string name="input_pullup">INPUT_PULLUP</string>
+    <string name="send">Отправить</string>
+</resources>
